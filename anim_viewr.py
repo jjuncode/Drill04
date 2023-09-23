@@ -5,27 +5,31 @@ open_canvas(736,521)
 background = load_image('image_background.png')
 character = load_image('sprite.png')
 
-center = get_canvas_width()/2,get_canvas_height()/2
-x,y = 0,center[1]
-offset_x = 74
-offset_y = 80
-frame =0
-cur_ani = 0
+center = get_canvas_width()/2,get_canvas_height()/2 # window 중심점
+x,y = 0,center[1]   # character pos
+offset_x = 74       # ani offset x
+offset_y = 80       # ani offset y 
+frame =0            # cur ani frame
+cur_ani = 0         # cur ani 
 
 def MoveRight():
+    global x,y
     clear_canvas()
     background.draw(center[0], center[1])
-    character.clip_draw(frame*offset_x,cur_ani*offset_y,offset_x,offset_y
+    character.clip_draw(frame*offset_x,0,offset_x,offset_y
                         ,x,y)
     update_canvas()
+    x += 5
     delay(0.05)
 
+def SetFrame():
+    global frame
+    frame += 1
+    if (frame > 8):
+        frame =0
 
 while (1):
-    frame += 1 
-    if ( frame > 8):
-        frame =0
+    SetFrame()
     MoveRight()
-    x += 5
     get_events()
 close_canvas()
