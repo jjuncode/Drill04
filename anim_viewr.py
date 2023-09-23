@@ -8,9 +8,9 @@ character = load_image('sprite.png')
 center = get_canvas_width()/2,get_canvas_height()/2
 x,y = 0,center[1]
 offset_x = 74
-offset_y = 94
+offset_y = 80
 frame =0
-cur_ani = 1
+cur_ani = 0
 
 def MoveRight():
     clear_canvas()
