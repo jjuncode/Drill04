@@ -44,4 +44,5 @@ while (1):
     SetFrame()
     DrawAnimation()
     get_events()
+    
 close_canvas()
