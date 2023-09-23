@@ -16,6 +16,9 @@ class Ani:
     max_frame = [9,9,9,9,2,0,2,2]    # sprite max frame 
     cur_ani = 0         # cur ani ( from img_bottom )
 
+    def FrameReset():
+        Ani.cur_frame =0
+
 class Distance:
     distn =0
 
@@ -29,15 +32,23 @@ def DrawAnimation():
  
 def SetFrame():
     Ani.cur_frame += 1
-    if (Ani.cur_ani > 7): Ani.cur_ani = 0
+    if (Ani.cur_ani > 7):
+        Ani.cur_ani = 0
+        Ani.FrameReset()
+
     if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):
-        Ani.cur_frame =0
+        Ani.FrameReset()
 
     Distance.distn +=5
-    if ( Distance.distn > 100 ):
-        Ani.cur_ani +=1
-        Distance.distn =0
-    if ( Ani.cur_ani > 8) : Ani.cur_ani = 0
+    if ( Distance.distn > 100 ):     # next animation
+        Ani.cur_ani +=1 # ani update
+        Distance.distn =0   
+        Ani.FrameReset()
+
+    if ( Ani.cur_ani > 7) :
+        Ani.cur_ani = 0
+        Ani.FrameReset()
+
     delay(0.1)
 
 while (1):
