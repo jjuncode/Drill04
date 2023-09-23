@@ -1,19 +1,22 @@
 from pico2d import *
 import pico2d as pico
 
-open_canvas()
-grass = load_image('grass.png')
+open_canvas(736,521)
+background = load_image('image_background.png')
 character = load_image('sprite.png')
 
-x,y = 400,300
+center = get_canvas_width()/2,get_canvas_height()/2
+x,y = 0,center[1]
 offset_x = 74
-offset_y = 93
+offset_y = 94
 frame =0
+cur_ani = 1
 
 def MoveRight():
     clear_canvas()
-    grass.draw(400, 30)
-    character.clip_draw(frame*offset_x,frame,offset_x,offset_y,x,y)
+    background.draw(center[0], center[1])
+    character.clip_draw(frame*offset_x,cur_ani*offset_y,offset_x,offset_y
+                        ,x,y)
     update_canvas()
     delay(0.05)
 
