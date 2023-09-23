@@ -32,22 +32,22 @@ def DrawAnimation():
  
 def SetFrame():
     Ani.cur_frame += 1
-    if (Ani.cur_ani > 7):
+    if (Ani.cur_ani > 7):   # Animation repeat
         Ani.cur_ani = 0
         Ani.FrameReset()
 
-    if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):
+    if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):    # Frame reset
         Ani.FrameReset()
 
     Distance.distn +=5
     if ( Distance.distn > 100 ):     # next animation
-        Ani.cur_ani +=1 # ani update
+        Ani.cur_ani +=1 
         Distance.distn =0   
         Ani.FrameReset()
 
-    if ( Ani.cur_ani > 7) :
-        Ani.cur_ani = 0
-        Ani.FrameReset()
+        if ( Ani.cur_ani > 7) : # Animation Repeat
+            Ani.cur_ani = 0
+            Ani.FrameReset()
 
     delay(0.1)
 
