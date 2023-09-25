@@ -2,7 +2,7 @@ from pico2d import *
 import pico2d as pico
 
 open_canvas(736,521)
-background = load_image('image_background.png')
+background = load_image('TUK_GROUND.png')
 character = load_image('sprite.png')
 
 center = get_canvas_width()/2,get_canvas_height()/2 # window center
@@ -19,37 +19,24 @@ class Ani:
     def FrameReset():
         Ani.cur_frame =0
 
-class Distance:
-    distn =0
-
 def DrawAnimation():
     global x,y
     clear_canvas()
-    background.draw(center[0], center[1])
+    background.draw(x,y,)
     character.clip_draw(Ani.cur_frame*Ani.offset_x,Ani.cur_ani*Ani.offset_y,Ani.offset_x,Ani.offset_y
                         ,x,y)
     update_canvas()
  
 def SetFrame():
     Ani.cur_frame += 1
-    if (Ani.cur_ani > 7):   # Animation repeat
-        Ani.cur_ani = 0
-        Ani.FrameReset()
 
     if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):    # Frame reset
         Ani.FrameReset()
 
-    Distance.distn +=5
-    if ( Distance.distn > 100 ):     # next animation
-        Ani.cur_ani +=1 
-        Distance.distn =0   
-        Ani.FrameReset()
-
-        if ( Ani.cur_ani > 7) : # Animation Repeat
-            Ani.cur_ani = 0
-            Ani.FrameReset()
-
     delay(0.1)
+
+def handle_event():
+    pass
 
 while (1):
     SetFrame()
