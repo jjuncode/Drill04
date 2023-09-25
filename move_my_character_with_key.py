@@ -8,7 +8,7 @@ character = load_image('sprite.png')
 center = get_canvas_width()/2,get_canvas_height()/2 # window center
 
 x,y = 400,center[1]   # character pos
-move_speed = 50
+move_speed = 15
 quit = False
 
 class Ani:
@@ -32,14 +32,16 @@ def DrawAnimation():
  
 def SetFrame():
     Ani.cur_frame += 1
-
+    if Dir.x == 0 and Dir.y == 0: # standing motion
+        Ani.cur_ani = 7
     if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):    # Frame reset
         Ani.cur_frame =0
 
     delay(0.1)
 
 def MoveCharacter():
-    global x,y
+    global x,y,move_speed
+
     x += Dir.x * move_speed;
     y += Dir.y * move_speed;
 
@@ -50,13 +52,19 @@ def handle_event():
         if event.type == SDL_QUIT:
             quit = True
         if event.type == SDL_KEYDOWN:
-            if event.key ==SDLK_UP:
+            if event.key == SDLK_ESCAPE:
+                quit=True
+            elif event.key ==SDLK_UP:
+                Ani.cur_ani = 1
                 Dir.y +=1
             elif event.key == SDLK_DOWN:
+                Ani.cur_ani = 3
                 Dir.y -=1
             elif event.key == SDLK_LEFT:
+                Ani.cur_ani = 2
                 Dir.x -=1
             elif event.key == SDLK_RIGHT:
+                Ani.cur_ani = 0
                 Dir.x +=1
         if event.type == SDL_KEYUP:
             if event.key ==SDLK_UP:
