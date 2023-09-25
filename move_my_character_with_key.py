@@ -2,7 +2,7 @@ from pico2d import *
 
 open_canvas(736,521)
 background = load_image('TUK_GROUND.png')
-character = load_image('img_sprite.png')
+character = load_image('sprite.png')
 
 center = get_canvas_width()/2,get_canvas_height()/2 # window center
 
@@ -11,10 +11,10 @@ move_speed = 15
 quit = False
 
 class Ani:
-    offset_x = 120       # ani offset x
-    offset_y = 120       # ani offset y
     cur_frame =0
-    max_frame = [8,8,6,6]    # sprite max frame
+    offset_x = 74       # ani offset x
+    offset_y = 80       # ani offset y 
+    max_frame = [9,9,9,9,2,0,2,2]    # sprite max frame
     cur_ani = 0         # cur ani ( from img_bottom )
 
 class Dir:
@@ -31,6 +31,8 @@ def DrawAnimation():
  
 def SetFrame():
     Ani.cur_frame += 1
+    if Dir.x == 0 and Dir.y == 0: # standing motion
+        Ani.cur_ani = 7
     if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):    # Frame reset
         Ani.cur_frame =0
 
@@ -57,19 +59,19 @@ def handle_event():
             if event.key == SDLK_ESCAPE:
                 quit=True
             elif event.key ==SDLK_UP:
-                Ani.cur_ani = 3
+                Ani.cur_ani = 1
                 Ani.cur_frame = 0
                 Dir.y +=1
             elif event.key == SDLK_DOWN:
-                Ani.cur_ani = 2
+                Ani.cur_ani = 3
                 Ani.cur_frame = 0
                 Dir.y -=1
             elif event.key == SDLK_LEFT:
-                Ani.cur_ani = 0
+                Ani.cur_ani = 2
                 Ani.cur_frame = 0
                 Dir.x -=1
             elif event.key == SDLK_RIGHT:
-                Ani.cur_ani = 1
+                Ani.cur_ani = 0
                 Ani.cur_frame = 0
                 Dir.x +=1
         if event.type == SDL_KEYUP:
