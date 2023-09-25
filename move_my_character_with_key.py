@@ -89,4 +89,5 @@ while (not quit):
     handle_event()
     DrawAnimation()
 
+
 close_canvas()
