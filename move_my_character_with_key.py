@@ -1,5 +1,4 @@
 from pico2d import *
-import pico2d as pico
 
 open_canvas(736,521)
 background = load_image('TUK_GROUND.png')
@@ -42,8 +41,8 @@ def SetFrame():
 def MoveCharacter():
     global x,y,move_speed
 
-    x += Dir.x * move_speed;
-    y += Dir.y * move_speed;
+    x += Dir.x * move_speed
+    y += Dir.y * move_speed
     if ( x > 2*center[0] ) : x = 2*center[0]
     if ( y> 2*center[1] ) : y= 2*center[1]
     if ( x < 0 ) : x = 0
