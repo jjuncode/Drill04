@@ -12,9 +12,9 @@ quit = False
 
 class Ani:
     offset_x = 120       # ani offset x
-    offset_y = 125       # ani offset y
+    offset_y = 120       # ani offset y
     cur_frame =0
-    max_frame = [8,8,7,7]    # sprite max frame
+    max_frame = [8,8,6,6]    # sprite max frame
     cur_ani = 0         # cur ani ( from img_bottom )
 
 class Dir:
@@ -57,16 +57,20 @@ def handle_event():
             if event.key == SDLK_ESCAPE:
                 quit=True
             elif event.key ==SDLK_UP:
-                Ani.cur_ani = 1
+                Ani.cur_ani = 3
+                Ani.cur_frame = 0
                 Dir.y +=1
             elif event.key == SDLK_DOWN:
-                Ani.cur_ani = 3
+                Ani.cur_ani = 2
+                Ani.cur_frame = 0
                 Dir.y -=1
             elif event.key == SDLK_LEFT:
-                Ani.cur_ani = 2
+                Ani.cur_ani = 0
+                Ani.cur_frame = 0
                 Dir.x -=1
             elif event.key == SDLK_RIGHT:
-                Ani.cur_ani = 0
+                Ani.cur_ani = 1
+                Ani.cur_frame = 0
                 Dir.x +=1
         if event.type == SDL_KEYUP:
             if event.key ==SDLK_UP:
