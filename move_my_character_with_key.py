@@ -2,7 +2,7 @@ from pico2d import *
 
 open_canvas(736,521)
 background = load_image('TUK_GROUND.png')
-character = load_image('sprite.png')
+character = load_image('img_sprite.png')
 
 center = get_canvas_width()/2,get_canvas_height()/2 # window center
 
@@ -11,10 +11,10 @@ move_speed = 15
 quit = False
 
 class Ani:
-    offset_x = 74       # ani offset x
-    offset_y = 80       # ani offset y 
+    offset_x = 120       # ani offset x
+    offset_y = 125       # ani offset y
     cur_frame =0
-    max_frame = [9,9,9,9,2,0,2,2]    # sprite max frame 
+    max_frame = [8,8,7,7]    # sprite max frame
     cur_ani = 0         # cur ani ( from img_bottom )
 
 class Dir:
@@ -31,8 +31,6 @@ def DrawAnimation():
  
 def SetFrame():
     Ani.cur_frame += 1
-    if Dir.x == 0 and Dir.y == 0: # standing motion
-        Ani.cur_ani = 7
     if (Ani.cur_frame > Ani.max_frame[Ani.cur_ani]):    # Frame reset
         Ani.cur_frame =0
 
