@@ -44,6 +44,11 @@ def MoveCharacter():
 
     x += Dir.x * move_speed;
     y += Dir.y * move_speed;
+    if ( x > 2*center[0] ) : x = 2*center[0]
+    if ( y> 2*center[1] ) : y= 2*center[1]
+    if ( x < 0 ) : x = 0
+    if (y <0 ) : y= 0
+
 
 def handle_event():
     global quit,dir
